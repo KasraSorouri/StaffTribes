@@ -11,6 +11,8 @@ const userRouter = require('./routes/users');
 // create express server
 const app = express();
 app.use(cors(),express.json());
+app.use(express.static('build'));
+
 
 // connect to Database
 logger.info('Connecting to Database ...');
