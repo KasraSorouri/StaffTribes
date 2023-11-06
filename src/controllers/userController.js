@@ -43,8 +43,9 @@ const editUser = async (req, res) => {
 // read availibility of a user by user id
 const getUserAvailability = async (req, res) => {
   const { id: userId } = req.params;
+  const weekNo = req.query.weekNo;
   try {
-    const availability = await userServices.getUserAvailability(userId);
+    const availability = await userServices.getUserAvailability(userId, weekNo);
     res.status(200).json({ availability });
   } catch (err) {
     res.status(404).json({ message: err.message });
@@ -54,7 +55,7 @@ const getUserAvailability = async (req, res) => {
 // set availibility of a user by user id
 const setUserAvailability = async (req, res) => {
   const { id: userId } = req.params;
-  const availability = req.body;
+  const availability = req.body.availability;
   try {
     const updatedAvailability = await userServices.setUserAvailability(userId, availability);
     res.status(200).json({ updatedAvailability });
@@ -66,8 +67,9 @@ const setUserAvailability = async (req, res) => {
 // read availibility of friend of a user by user id
 const getUserFriendsAvailability = async (req, res) => {
   const { id: userId } = req.params;
+  const weekNo = req.query.weekNo;
   try {
-    const availability = await userServices.getUserFriendsAvailability(userId);
+    const availability = await userServices.getUserFriendsAvailability(userId,weekNo);
     res.status(200).json({ availability });
   } catch (err) {
     res.status(404).json({ message: err.message });
